@@ -4,8 +4,7 @@ import Redis from 'ioredis';
 const logger = require('pino')();
 
 const redisURL = (workerData?.redisURL || 'redis://localhost:6379/4');
-const channelName = 'Publish::DataSyncEvent::channel';
-const streamName= 'Publish::DataSyncEvent::stream';
+const streamName = (workerData?.streamName || 'data_sync_stream_test');
 const redisClient = new Redis(redisURL);
 
 logger.info('Pub data sync worker started.');
@@ -13,8 +12,8 @@ logger.info('Pub data sync worker started.');
 const publishEvent = async (eventData: any) => {
   try {
     const id = await redisClient.xadd(streamName, '*', 'message', JSON.stringify(eventData)) as string;
-    await redisClient.publish(channelName, id);
-    logger.info(`Message published to channel ${channelName}: ${id}`);
+    await redisClient.publish(streamName, id);
+    logger.info(`Message published to channel ${streamName}: ${id}`);
   } catch (err) {
     logger.error('Error publishing message:', err);
   }

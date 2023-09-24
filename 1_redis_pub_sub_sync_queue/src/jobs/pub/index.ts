@@ -5,6 +5,7 @@ import pubEmitter from "../../pub.emitter";
 const logger = require('pino')();
 
 interface ConnectParams {
+  streamName: string,
   redisURL: string
 }
 

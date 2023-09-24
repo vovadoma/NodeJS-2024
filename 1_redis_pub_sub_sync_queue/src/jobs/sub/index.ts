@@ -4,6 +4,8 @@ import path from 'path';
 const logger = require('pino')();
 
 interface ConnectParams {
+  appName: string,
+  streamName: string,
   redisURL: string
 }
 
