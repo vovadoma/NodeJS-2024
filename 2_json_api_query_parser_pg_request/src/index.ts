@@ -2,7 +2,7 @@ import process from "node:process";
 import url from 'node:url';
 import querystring from 'node:querystring';
 
-const url1 = 'filter[price.amount][equ]=100&filter[price.amount][from]=1440&filter[price.amount][to]=6000&filter[age]=21&filter[requestType]=1&filter[status]=draft,approved,rejected&filter[submit-date][between]=2023-10-04,2023-10-10&page[number]=1&page[size]=10';
+const url1 = 'fields[price]=id,code,amount&filter[price.amount][equ]=100&filter[price.amount][from]=1440&filter[price.amount][to]=6000&filter[age]=21&filter[requestType]=1&filter[status]=draft,approved,rejected&filter[submit-date][between]=2023-10-04,2023-10-10&page[number]=1&page[size]=10';
 
 const queryParams = querystring.parse(url1);
 
